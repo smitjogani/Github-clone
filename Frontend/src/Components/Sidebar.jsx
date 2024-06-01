@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { MdOutlineExplore } from "react-icons/md";
 import { PiSignInBold } from "react-icons/pi";
 import { MdEditDocument } from "react-icons/md";
+import Logout from "./Logout";
 
 const Sidebar = () => {
   const authUser = true;
@@ -39,22 +40,28 @@ const Sidebar = () => {
           </>
         )}
 
-        {!authUser && (
+        {authUser && (
           <>
             <Link
-              to="/explore"
+              to="/signup"
               className="flex justify-center transition-colors duration-200 p-2 rounded-lg hover:bg-gray-800"
             >
               <MdEditDocument size={25} />
             </Link>
 
             <Link
-              to="/likes"
+              to="/login"
               className="flex justify-center transition-colors duration-200 p-2 rounded-lg hover:bg-gray-800"
             >
               <PiSignInBold size={20} />
             </Link>
           </>
+        )}
+
+        {authUser && (
+          <div className="flex flex-col mt-auto gap-2">
+            <Logout/>
+          </div>
         )}
       </nav>
     </aside>

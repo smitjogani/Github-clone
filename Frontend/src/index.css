@@ -5,10 +5,10 @@
 body {
   background: linear-gradient(
       to bottom right,
-      rgba(0, 0, 0, 0.8),
-      rgba(0, 0, 0, 0.8)
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.5)
     ),
-    url("/bg.png");
+    url("https://img.freepik.com/free-vector/abstract-background-gradient-modern-design_677411-3055.jpg?t=st=1717224820~exp=1717228420~hmac=29a6313136bde46467849a997a275a3ef03e5d1446bdc0acb9e4086d1847edbb&w=1060");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
