@@ -40,7 +40,7 @@ const Sidebar = () => {
           </>
         )}
 
-        {authUser && (
+        {!authUser && (
           <>
             <Link
               to="/signup"
