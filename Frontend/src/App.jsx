@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import { Toaster } from "react-hot-toast"
+
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -21,6 +23,9 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/likes" element={<Likes />} />
           </Routes>
+          <Toaster 
+            position="top-center"
+            reverseOrder={false} />
         </div>
       </div>
     </>
