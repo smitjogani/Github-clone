@@ -11,22 +11,27 @@ const Home = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [sortType, setSortType] = useState("forks");
+  const [sortType, setSortType] = useState("recents");
 
 
   const getUserProfileAndRepos = useCallback(
     async (username = "smitjogani") => {
       setLoading(true);
       try {
-        const userResponse = await fetch(`https://api.github.com/users/${username}`);
+        const userResponse = await fetch(`https://api.github.com/users/${username}`,{
+          headers:{
+            authorization:`token ${import.meta.env.VITE_GITHUB_API_KEY}`,
+          }
+        });
         const userProfile = await userResponse.json();
         setUserProfile(userProfile);
 
         const repoRes = await fetch(userProfile.repos_url);
         const repos = await repoRes.json();
+
+        repos.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+
         setRepos(repos);
-        // console.log("User Profile : ", userProfile);
-        // console.log("Repos : ", repos);
         return { userProfile, repos }
 
       } catch (error) {
@@ -51,11 +56,12 @@ const Home = () => {
     setUserProfile(userProfile);
     setRepos(repos);
     setLoading(false);
+    setSortType("recent");
   }
 
   const onSort = (sortType) => {  
     if(sortType === "recent"){
-      repos.sort((a,b) => new Date(b.created_at) - new Date(a.created_at)); //Descending order, recent first
+      repos.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
     }
     else if(sortType === "stars"){
       repos.sort((a,b) => b.stargazers_count - a.stargazers_count);

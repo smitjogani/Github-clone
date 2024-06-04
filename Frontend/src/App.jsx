@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-
-import { Toaster } from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
+import LocomotiveScroll from 'locomotive-scroll';
 
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -11,6 +11,7 @@ import Likes from "./Pages/Likes";
 import Sidebar from "./Components/Sidebar";
 
 const App = () => {
+  const locomotiveScroll = new LocomotiveScroll();
   return (
     <>
       <div className="flex">
@@ -23,7 +24,7 @@ const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/likes" element={<Likes />} />
           </Routes>
-          <Toaster 
+          <Toaster
             position="top-center"
             reverseOrder={false} />
         </div>

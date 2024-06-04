@@ -5,6 +5,7 @@ import { PROGRAMMING_LANGUAGES } from "../utils/constants"
 import toast from "react-hot-toast";
 
 const Repo = ({ repo }) => {
+	// console.log(repo);
 
 	const formattedDate = formatDate(repo.created_at);
 
@@ -39,7 +40,7 @@ const Repo = ({ repo }) => {
         py-0.5 rounded-full flex items-center gap-1'
 				>
 					<FaRegStar />
-					{Repo.stargazers_count}
+					{repo.stargazers_count}
 				</span>
 				<span
 					className='bg-purple-100 text-purple-800 text-xs font-medium
