@@ -17,15 +17,14 @@ const ProfileInfo = ({ userProfile }) => {
 					<a href={userProfile?.html_url} target='_blank' rel='noreferrer'>
 						<img src={userProfile?.avatar_url} className='rounded-md w-24 h-24 mb-2' alt='' />
 					</a>
-					{/* View on Github */}
+				
 
-					<div className='flex gap-2 items-center flex-col'>
-						{/* <LikeProfile userProfile={userProfile} /> */}
+					<div className='flex gap-2 items-center flex-col ml-8'>
 						<a
 							href={userProfile?.html_url}
 							target='_blank'
 							rel='noreferrer'
-							className='bg-glass ml-8 font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2'
+							className='bg-glass font-medium w-full text-xs p-2 rounded-md cursor-pointer border border-blue-400 flex items-center gap-2'
 						>
 							<FaEye size={16} />
 							View on Github

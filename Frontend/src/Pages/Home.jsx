@@ -18,20 +18,16 @@ const Home = () => {
     async (username = "smitjogani") => {
       setLoading(true);
       try {
-        const userResponse = await fetch(`https://api.github.com/users/${username}`,{
-          headers:{
-            authorization:`token ${import.meta.env.VITE_GITHUB_API_KEY}`,
-          }
-        });
-        const userProfile = await userResponse.json();
-        setUserProfile(userProfile);
 
-        const repoRes = await fetch(userProfile.repos_url);
-        const repos = await repoRes.json();
+        const resData = await fetch(`http://localhost:3000/api/users/profile/${username}`);
 
-        repos.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+        const { userProfile, repos } = await resData.json();
+
+        repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
         setRepos(repos);
+        setUserProfile(userProfile);
+
         return { userProfile, repos }
 
       } catch (error) {
@@ -59,15 +55,15 @@ const Home = () => {
     setSortType("recent");
   }
 
-  const onSort = (sortType) => {  
-    if(sortType === "recent"){
-      repos.sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+  const onSort = (sortType) => {
+    if (sortType === "recent") {
+      repos.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     }
-    else if(sortType === "stars"){
-      repos.sort((a,b) => b.stargazers_count - a.stargazers_count);
+    else if (sortType === "stars") {
+      repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
     }
-    else if(sortType === "forks"){
-      repos.sort((a,b) => b.forks_count - a.forks_count);
+    else if (sortType === "forks") {
+      repos.sort((a, b) => b.forks_count - a.forks_count);
     }
     setSortType(sortType);
     setRepos([...repos])
@@ -75,7 +71,7 @@ const Home = () => {
 
   return (
     <div className="m-4">
-      <Search onSearch={onSearch}/>
+      <Search onSearch={onSearch} />
       {repos.length > 0 && <SortRepo onSort={onSort} sortType={sortType} />}
 
       <div className="flex gap-4 flex-col lg:flex-row justify-center">

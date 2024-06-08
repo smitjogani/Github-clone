@@ -1,15 +1,18 @@
 const express = require('express');
 const cors = require('cors')
+const passport = require('passport');
+const session = require('express-session');
+
+require("./passport/github.auth.js");
 
 const userRoutes = require("./routes/users.routes.js");
 const exploreRoutes = require("./routes/explore.routes.js");
 const authRoutes = require("./routes/auth.routes.js");
-const passport = require('passport');
-require("./passport/github.auth.js");
+
 const dbConnection = require('./Config/db.js');
-const session = require('express-session');
 
 const app = express();
+
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -24,3 +27,4 @@ app.listen(3000, () => {
 
     dbConnection.mongodbConnection();
 })
+
