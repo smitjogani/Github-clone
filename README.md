@@ -3,7 +3,7 @@
 Freatures:
 
 👉 User Search Functionality (with username)
-👉 Authentication using passport (for Github ogin Signup)
+👉 Authentication using passport (for Github login Signup)
 👉 explore top repo's of specific language
 👉 Fetch data from Github Api's
 👉 Cloning repo's Url 
